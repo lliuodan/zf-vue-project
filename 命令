@@ -1,0 +1,4 @@
+1.返回上一级文件夹  cd ..
+2.如果没有package.json文件，可以使用npm init -y
+3.如果想清除命令则使用 clear
+4.安装npm install  vue axios bootstrap

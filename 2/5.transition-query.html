@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transition-query</title>
+    <link rel="stylesheet" href="node_modules/animate.css/animate.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="query">
+    <transition-group enter-active-class="animated bounceInLeft " leave-active-class="animated bounceOutDown">
+        <!--v-for默认会复用原有的dom元素，如果加了key  而且key不同它认为是两个人了-->
+        <div v-for='(a,index) in newArr' :key="Math.random()">{{a}}</div>
+    </transition-group>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm=new Vue({
+        el:'#app',
+        computed:{
+            newArr(){
+                return  this.arr.filter(item=>item==this.query)
+            }
+        },
+        data:{
+            query:'',
+            flag:true,
+            arr:[1,2,3,4,5]
+        }
+    })
+</script>
+</body>
+</html>

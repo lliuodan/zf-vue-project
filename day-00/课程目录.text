@@ -1,0 +1,22 @@
+ ### JS数据类型：
+   基本数据类型：number string boolean null undefined
+   Object function...
+   Symbol(es6)
+
+
+ 数组方法：数组的变异（能改变原数组） (pop push unshift shift splice reverse sort)
+       indexof lastIndexof  concat slice
+
+
+  forEach  filter(过滤) map（映射） some every reduce (includes  find)
+
+ ### node的版本（升级到8.5以上） webStorm(2017版本以上)  vscode sublime
+
+
+ ##框架和库
+ -框架 vue 拥有完整的解决方案  我们写好人家调用我
+ -库 jquery underscore zepto animate.css 我们调用他
+
+ ##渐进式（渐进增强）
+ -vue全家桶 vue.js+vue-router+vuex+axios
+ -通过组合 完成一个完整的框架

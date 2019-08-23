@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修饰符</title>
+</head>
+<body>
+<div id="app">
+    <!--stopPropagation 阻止事件传播-->
+    <!--<div @click.capture.stop="parent">parent-->
+        <!--<div @click.stop="child">child-->
+            <!--<div @click="grandson">grandson</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div @click="parent">parent-->
+        <!--<div @click.once="child">child-->
+            <!--<div @click="grandson">grandson</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div @click="parent">parent
+        <div @click.self="child">child
+            <div @click="grandson">grandson</div>
+        </div>
+    </div>
+    <!--加上.prevent就不跳转了，跳转是默认行为-->
+    <!--href="http://www.baidu.com" 去掉之后，就没有下划线和默认颜色了-->
+    <a href="http://www.baidu.com" @click.prevent="parent">去百度</a>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    let vm=new Vue({
+        el:'#app',
+        methods:{//默认是冒泡，往上冒泡
+            parent(){
+                alert('parent');
+            },
+            child(){
+                alert('child');
+            },
+            grandson(){
+                alert('grandson');
+            }
+        },
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

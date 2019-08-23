@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+</head>
+<body>
+<!--以前：拼字符串innerHTML-->
+<!--vue提供了一个指令 v-for 解决循环问题 更高效 会复用原有的结构-->
+<div id="app">
+    <!--要循环谁就在谁身上增加v-for属性-->
+    <!--默认是 value in 数组 / (value,index) in 数组-->
+    <!--选中谁 谁就是$0，用来调试用-->
+    <ul>
+        <li v-for="(fruit,index) in fruits">{{index+1}}.{{fruit.name}}
+            <ul>
+                <li v-for="(item,childIndex) in fruit.color">{{index+1}}.{{childIndex+1}}{{item}}</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <div v-for="c in 'aaaa'">{{c}}</div>
+    <div v-for="c in 4">{{c}}</div>
+    <div v-for="(value,key,index) in obj">{{index+1}}.{{key}}:{{value}}</div>
+    <ul>
+        <li v-for="a in arr">{{a}}</li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="./node_modules/vue/dist/vue.min.js"></script>
+<script>
+    let vm=new Vue({
+        el:'#app',
+        data:{
+            obj:{name:'zfpx',age:9,address:'xxx'},
+            fruits:[
+                {name:'香蕉',color:['green','yellow']},
+                {name:"西瓜",color:['red','green','yellow']},
+                {name:"苹果",color:['pink']}
+              ],
+            arr:[1,2,3],
+        }
+    });
+</script>
+</body>
+</html>

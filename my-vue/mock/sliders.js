@@ -1,0 +1,2 @@
+//node（commonjs写法）
+module.exports=['https://img1.360buyimg.com/da/s750x366_jfs/t18850/215/2045601737/101806/6edf0d85/5ae1a491N7c502478.jpg!cr_1125x549_0_72.dpg','https://m.360buyimg.com/mobilecms/s1280x624_jfs/t19930/79/87720898/199334/34565ba2/5ae42589Nd37e757e.jpg!cr_1125x549_0_72!q70.jpg.dpg.webp','https://img1.360buyimg.com/da/jfs/t17515/60/2027629718/141755/ad865046/5ae3123fN77e7947e.jpg!cr_1125x549_0_72'];

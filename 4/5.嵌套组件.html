@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>嵌套组件</title>
+</head>
+<body>
+<div id="app">
+    <parent>
+        <son></son>
+    </parent>
+
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    // let son={
+    //     template:'<div>son</div>'
+    // };
+    // let grandson={
+    //     template:'<div>grandson</div>'
+    // };
+    // let parent={
+    //     template:'<div>parent</div>'
+    // }
+    let vm=new Vue({
+        el:'#app',
+        components:{
+            parent:{
+                template:'<div>parent<son></son></div>',
+                components:{
+                    son:{
+                        template:'<div>son<grandson></grandson></div>',
+                        components:{
+                            grandson:{
+                                template:'<div>grandson</div>'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    });
+
+</script>
+</body>
+</html>

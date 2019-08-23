@@ -1,0 +1,31 @@
+渐进式的理解：
+    1.声明式渲染（无需关心如何实现）
+    2.组件系统
+    3.客户端路由（vue-router）
+    4.大规模状态管理（vuex）
+    5.构建工具（vue-cli）
+
+VUE的两个核心特点：
+    响应的数据变化：当数据发生变化-->视图的自动更新
+    组合的视图组件：ui页面映射为组件树，划分组件可维护，可复用，可测试
+
+MVC：（backbone）
+    model 数据
+    view  视图
+    controller 控制器
+
+MVVM模式：（angular,vue）双向的
+    model 数据
+    view  视图
+    viewModel  视图模型
+
+Object.defineProperty(es5)的没有替代方案
+    不支持IE8<=
+
+安装VUE
+    -cdn的方式
+    -npm安装  node package manager
+
+步骤：1）npm init -y
+    初始化会产生一个packgage.json的文件，这个文件用来描述项目的依赖,不能有大写，特殊字符，中文，而且不要和安装的包的名字相同
+    2）npm install vue

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子传父</title>
+</head>
+<body>
+<div id="app">
+    父亲：{{money}}
+    <!--<child :m="money" @child-msg="val=>this.money=val"></child>--><!--也可以用-->
+    <child :m="money" @update:m="val=>this.money=val"></child>
+
+
+    <!--<child :m.sync="money"></child>--><!--语法糖（箭头函数就是函数的一个语法糖），写的时候不用，按原有的写法即可-->
+
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm=new Vue({//parent
+        el:'#app',
+        data:{
+            money:400
+        },
+        // methods:{
+        //     things(val){// on('xxx',things)
+        //         this.money=val;
+        //     }
+        // },
+        components:{
+            child:{
+                props:['m'],//父传子
+                template:'<div>儿子:{{m}} <button @click="getMoney">多要</button></div>',
+                methods:{
+                    getMoney(){
+                        // this.$emit('child-msg',800)//触发自己的自定义事件，让父亲的方法执行
+                        this.$emit('update:m',800)
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>挂载</title>
+</head>
+<body>
+<div id="app">
+    <p ref="myp">{{msg}}</p>
+    <div ref="wrap">
+        <div v-for="a in arr" ref="mydiv">{{a}}</div>
+    </div>
+
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //this.$data vm上的数据
+    // this.$watch 监控
+    // this.$el  当前el元素
+    // this.$set  后加的属性实现响应式变化
+    // this.$options
+    //this.$refs 常用 记住
+    // this.$nextTick() 异步方法，等待渲染dom完成后来获取vm
+                        // this.$nextTick(()=>{console.log(vm);})
+    let vm=new Vue({
+        el:'#app',
+        data:{
+            msg:'hello',
+            arr:[1,2,3]
+        },
+        mounted(){
+            // console.log(this.$options);
+            //如果dom元素不是通过v-for循环出来的，只能获取一个，通过v-for循环出来的可以获取多个
+            // console.log(this.$refs.myp);
+            // console.log(this.$refs.mydiv);
+            this.arr=[1,2,3,4];//刷新的过程，dom渲染是异步的
+            // console.log(this.$refs.wrap.children.length);//3个   dom映射的问题
+            // console.log(this.$refs.wrap);//此时是4个孩子，如果加上debugger就是3个孩子
+            // debugger;
+
+            this.$nextTick(()=>{//如果数据变化后，想获取真实dom中的数据，需要等待页面渲染完毕后再去获取，所有的dom操作最好在nextTick中
+                console.log(this.$refs.wrap.children.length);//4
+            })
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由编程式导航</title>
+</head>
+<body>
+<div id="app">
+    <!-- to = '/home'-->
+    <router-link :to="{path:'/home'}">首页</router-link>
+    <router-link :to="{path:'/list'}">列表页</router-link>
+    <router-view></router-view>
+</div>
+<!--编程式导航，在js跳转页面-->
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let home={
+        template:'<div>首页 <button @click="toList">去列表</button></div>',
+        methods:{
+            toList(){
+                this.$router.push('/list');//push强制跳转路径
+
+                // this.$router.replace('/list');//路由替换，将当前的历史替换掉  ['/','/home','/list','/list']
+            }
+        }
+    };
+    let list={
+        template:'<div>列表页 <button @click="back">返回</button></div>',
+        methods:{
+            back(){
+                this.$router.go(-1);//返回某一级  -1上一个页面，1前进一个页面 -2后退2页
+            }
+        }
+    };
+    let routes=[
+        {path:'',component:home},//默认展示的路由
+        {path:'/home',component:home},
+        {path:'/list',component:list},
+        // {path:'*',component:list},//匹配不到的时候随意写一个,这个地方路径不会变，只是切换了组件而已
+        {path:'*',redirect:'/home'}//路径变，组件也会变
+
+    ];
+    let router=new VueRouter({
+        routes
+    });
+    let vm = new Vue({
+        el: '#app',
+        router,//每个组件都会拥有一个名字叫 $router的属性(有r的放的都是方法)，还有一个名字叫$route(没有r的放的都是属性)
+
+
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+1.如果写代码报红
+可以file-->settings-->搜索jshint  jslint全部关掉也就是，enable为false

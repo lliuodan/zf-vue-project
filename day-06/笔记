@@ -1,0 +1,87 @@
+安装：修改package.json，要记得初始化 npm init -y ，然后npm install
+
+
+
+http://localhost:8080/#/
+
+安装淘宝镜像：npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install [name]
+cnpm install -g vue-cli
+cd 这个项目
+vue init webpack demo01
+路由是yes,剩下三个是no
+
+cnpm install
+cnpm run dev
+
+
+如果想第二次运行：直接cmd进入这个项目目录，然后npm run dev即可
+
+###  模块
+
+--node 模块的规范commonjs（webpack必须采用commonjs写法）
+--CMD(seajs)	AMD(requirejs)
+--umd 为了做兼容处理的
+--esmodule（es6）
+        -如何定义模块（一个Js就是一个模块）
+        -如何导出模块（export）
+        -如何使用模块（import）
+珠峰文档：http://www.zhufengpeixun.cn/docs/html/
+
+
+##  webpack
+ --npm init -y   初始化package.json
+ -- cnpm install webpack --save-dev
+ （yarn add webpack --dev）
+
+ >安装webpack或者less最好不要安装全局的，否则可能导致webpack的版本差异，最好采用本地安装
+
+>在package.json中配置一个脚本（scripts），这个脚本用的命令是webpack,会去当前的node_modules下找bin对应的webpack名字让其执行，执行的就是bin/webpack.js,webpack.js需要当前目录下有个名字叫webpack.config.js的文件，我们通过npm run build执行的目录是当前文件的目录，所以会去当前目录下查找
+
+
+## babel转义es6  (es6转化成es5)
+
+--安装babel
+    cnpm install babel-core --save-dev  相当于去了律师公司
+    cnpm install babel-loader --save-dev 相当于翻译官，律师名
+
+## babel-preset-es2015
+    让翻译官拥有解析es6语法的功能
+    cnpm install babel-preset-es2015 --save-dev
+
+## babel-preset-stage-0
+        钻戒 车  包 化妆品  stage-0
+        车  包 化妆品  stage-1
+        包 化妆品   stage-2
+    cnpm install babel-preset-stage-0 --save-dev
+
+## css-loader 将css解析成模块，将解析的内容插入到style标签内（style-loader）
+    cnpm install css-loader style-loader --save-dev
+
+## less,sass,stylus(预处理语言)
+--less-loader   less    css-loader  style-loader
+--sass-loader
+--stylus-loader
+    cnpm install less less-loader --save-dev
+
+
+## 解析图片
+-- file-loader   url-loader(是依赖于file-loader的)
+    cnpm install file-loader url-loader --save-dev
+
+## 需要解析html插件
+--插件的作用是以我们自己的Html为末班将打包后的结果，自动引入到html中产生到dist目录下
+    cnpm install html-webpack-plugin --save-dev
+
+## webpack-dev-server
+--这里面内置了服务，可以帮我们启动一个端口号，当代码更新时，可以自动打包（内存中打包），代码有变化就重新执行
+    cnpm install webpack-dev-server --save-dev
+
+
+    如果报错没有权限（operation not permitted），则就打开cmd->右击命令行以管理员身份运行
+
+## 安装vue-loader vue-template-compiler
+--vue-loader 解析.vue文件的，vue会自动的调用vue-template-compiler
+--vue-template-compiler用来解析vue模版的
+
+

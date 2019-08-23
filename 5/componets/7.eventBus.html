@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件之间的通信</title>
+</head>
+<body>
+<div id="app">
+    <brother1></brother1>
+    <brother2></brother2>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let EventBus=new Vue;//创建一个第三方实例
+    //需求：1中点变绿，2中变成绿色  old是原有值
+    let brother1={
+        template:'<div>{{color}}<button @click="change">变绿</button></div>',
+        data(){
+            return {color:'绿色',old:'绿色'}
+        },
+        created(){
+            // EventBus.$on('changeRed',val=>{//页面一加载，兄弟1长个耳朵听
+            //     this.color=val;
+            // })
+        },
+        methods:{
+            change(){
+                EventBus.$emit('changeGreen',this.old);//兄弟2点击的时候，触发这个change事件
+            }
+        }
+    };
+    let brother2={
+        template:'<div>{{color}}<button @click="change">变红</button></div>',
+        data(){
+            return {color:'红色',old:'红色'}
+        },
+        created(){
+            EventBus.$on('changeGreen',val=>{//页面二加载，兄弟2长个耳朵听
+                this.color=val;
+            })
+        },
+        methods:{
+            // change(){
+            //     EventBus.$emit('changeRed',this.old);//兄弟1点击的时候，触发这个change事件
+            // }
+        }
+
+    }
+    let vm=new Vue({
+        el:'#app',
+        data:{
+
+        },
+        components:{
+            brother1,
+            brother2
+        }
+    })
+</script>
+</body>
+</html>

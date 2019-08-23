@@ -1,0 +1,38 @@
+视频6-7.vue文件的webpack配置
+webpack步骤：
+1.npm init -y
+2.npm install vue vue-loader vue-template-compiler webpack webpack-dev-server babel-core babel-loader babel-preset-es2015 babel-preset-stage-0 css-loader style-loader less less-loader file-loader url-loader html-webpack-plugin --save-dev
+
+3.新建 webpack.config.js文件
+
+4.新建一个src文件：里面有新建一个main.js（入口文件）
+
+5.新建.babelrc文件（配置webpack.config.js的时候，配置到babel-laoder时）
+	{
+	“presets”:["es2015","stage-0"]	
+
+	}
+6.新建src-->index.html（配置webpack.config.js的时候，配置到htmlWebackPlugin时）
+
+7.启个服务npm run dev
+
+8.在main.js中写入document.write("你好")可以测试，webpack就跑通了
+
+9.在index.html中写入一个<div id="app"></div>
+
+10.如果没有安vue,则npm install vue ,然后在main.js中写入
+	import Vue from 'vue';
+	new Vue({
+		render:(h)=>h('h1',['hello',h('sapn','一则头条')])
+
+	}).$mount('#app');
+11.src->新建App.vue
+
+12.src->新建右击new->edit file templates---> + --->Unnamed:name:my-vue(随便)，extensions:vue  把模版加进去就可以了
+
+13.可以把App.vue删掉，然后再新建my-vue，名字就是App,和上面那个是一样的，这个就是自动生成
+
+14.在webpack.config.js文件中配置匹配.vue后缀的文件
+
+15.在main.js中配置import App from 'App.vue';
+ 然后npm run dev 跑一下

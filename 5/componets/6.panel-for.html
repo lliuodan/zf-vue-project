@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面板</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <!--@say-title 多个单词拼写就用短横线-->
+    <panel type="article.type" @say-title="parent" v-for="(article,index) in articles" :key="index">
+        <div slot='title'><span v-html="article.title"></span></div>
+        <div slot="content">{{article.content}}</div>
+        <div v-if="article.auth">
+            {{article.auth}}
+        </div>
+    </panel>
+    <!--<panel type="danger"></panel>-->
+</div>
+<template id="panel">
+    <div class="panel" :class="[color]">
+        <div class="panel-heading" ref="head">
+            <slot name="title"></slot>
+        </div>
+        <div class="panel-body">
+            <slot name="content"></slot>
+        </div>
+        <div class="panel-footer">
+            <!--<slot></slot>--> <!--和上面的作者：aaa连用-->
+            <slot>匿名</slot>
+            <button @click="say">点我说标题</button>
+        </div>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let panel={
+      template:'#panel',
+        computed:{
+          color(){
+              return 'panel-'+this.type
+          }
+        },
+        methods:{
+          say(){
+              this.$emit('say-title',this.$refs.head.innerText);
+          }
+        },
+        props:{
+          type:{//this.type='primary'  子不能更改父组件传递的属性
+              type:[String],
+              default:'default'
+          }
+        }
+    };
+    let vm=new Vue({
+        el:'#app',
+        data:{
+            articles:[
+                {type:'warning',title:'<h2>vue</h2>',content:'这是vue的文章',auth:'作者：aaa'},
+                {type:'primary',title:'<h2>react</h2>',content:'这是react的文章'},
+                {type:'danger',title:'<h2>angular</h2>',content:'这是angular的文章',auth:'作者：aaa'},
+            ]
+        },
+        methods:{
+          parent(tit){
+              alert(tit);
+          }
+        },
+        components:{
+            panel,
+
+        }
+    })
+</script>
+</body>
+</html>
